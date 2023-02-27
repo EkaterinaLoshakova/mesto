@@ -1,0 +1,11 @@
+@import url(../vendor/normalize.css);
+@import url(../blocks/page/page.css);
+@import url(../blocks/page/__content-centr/page__content-centr.css); /* удалить */
+@import url(../blocks/page/__container/page__container.css);
+@import url(../blocks/header/header.css);
+@import url(../blocks/header/__line/header__line.css);
+@import url(../blocks/header/__logo/header__logo.css);
+@import url(../blocks/profile/__avatar/profile__avatar.css);
+@import url(../blocks/page/__margin-left-right/page__margin-lefr-right.css);
+@import url(../blocks/profile/__name/profile__name.css);
+@import url(../blocks/profile/__type-of-activity/profile__type-of-activity.css);

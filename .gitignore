@@ -1,0 +1,10 @@
+.Ds_Store
+Thumbs
+
+.idea
+*sublime*
+.vscode
+
+*.log*
+node_modules/
+dist
