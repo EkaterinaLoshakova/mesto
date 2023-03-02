@@ -4,7 +4,7 @@
   font-size: 42px;
   line-height: 1.143;
   margin: 0;
- /* grid-area: name;*/
+  grid-area: name;
 }
 
 
@@ -12,8 +12,7 @@
 @media screen and (max-width: 768px) {
   .profile__name {
     font-size: 27px;
-    line-height: 1.21;
-    grid-column: 1 / 3;
     text-align: center;
+    padding-left: 16px;
   }
 }
