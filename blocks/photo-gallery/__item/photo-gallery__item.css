@@ -1,0 +1,6 @@
+.photo-gallery__item {
+  height: 362px;
+  background-color: white;
+  background-position: bottom;
+  border-radius: 10px;
+}

@@ -1,3 +1,16 @@
 .profile__type-of-activity {
   color: white;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.22;
+  margin: 0;
+  grid-column: 1 / 3;
+  /*grid-area: description;*/
+}
+
+@media screen and (max-width: 768px) {
+  .profile__type-of-activity {
+    font-size: 14px;
+    text-align: center;
+  }
 }

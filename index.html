@@ -8,20 +8,71 @@
     <title>Место</title>
   </head>
   <body class="page">
-      <div class="page__container">
-        <header class="header">
-          <img src="./images/logo.svg" alt="Место" class="header__logo" />
-          <div class="header__line"></div>
-        </header>
-        <main class="content page__margin-left-right">
-          <section class="profile">
-            <div class="profile__avatar"></div>
-            <div class="profile__info">
-              <h1 class="profile__name">Жак-Ив Кусто</h1>
-              <h2 class="profile__type-of-activity">Исследователь океана</h2>
+    <div class="page__container">
+      <header class="header">
+        <img src="./images/logo.svg" alt="Место" class="header__logo" />
+        <div class="header__line"></div>
+      </header>
+      <main class="content page__margin-left-right">
+        <section class="profile">
+          <div class="profile__avatar"></div>
+          <div class="profile__info">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <button class="edit-button"></button>
+            <h2 class="profile__type-of-activity">Исследователь океана</h2>
+          </div>
+          <button class="add-button"></button>
+        </section>
+        <section class="photo-gallery">
+          <ul class="photo-gallery__list">
+            <li class="photo-gallery__item">
+              <img src="./images/balls.jpg" alt="" class="photo-gallery__image" />
+              <div class="photo-gallery__wrapper">
+              <h3 class="photo-gallery__title">Каппадокия</h3>
+              <button class="button-like"></button>
             </div>
-          </section>
-        </main>
-      </div>
+            </li>
+            <li class="photo-gallery__item">
+              <img src="./images/bike.jpg" alt="" class="photo-gallery__image" />
+              <div class="photo-gallery__wrapper">
+              <h3 class="photo-gallery__title">Бали</h3>
+              <button class="button-like"></button>
+              </div>
+            </li>
+            <li class="photo-gallery__item">
+              <img src="./images/maldives.jpg" alt="" class="photo-gallery__image" />
+              <div class="photo-gallery__wrapper">
+              <h3 class="photo-gallery__title">Мальдивы</h3>
+              <button class="button-like"></button>
+              </div>
+            </li>
+            <li class="photo-gallery__item">
+              <img src="./images/plane.jpg" alt="" class="photo-gallery__image" />
+              <div class="photo-gallery__wrapper">
+              <h3 class="photo-gallery__title">Полёт</h3>
+              <button class="button-like"></button>
+              </div>
+            </li>
+            <li class="photo-gallery__item">
+              <img src="./images/road.jpg" alt="" class="photo-gallery__image" />
+              <div class="photo-gallery__wrapper">
+              <h3 class="photo-gallery__title">Аризона</h3>
+              <button class="button-like"></button>
+              </div>
+            </li>
+            <li class="photo-gallery__item">
+              <img src="./images/santorini.jpg" alt="" class="photo-gallery__image" />
+              <div class="photo-gallery__wrapper">
+              <h3 class="photo-gallery__title">Санторини</h3>
+              <button class="button-like"></button>
+              </div>
+            </li>
+          </ul>
+        </section>
+      </main>
+      <footer class="footer page__margin-left-right">
+        <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
+      </footer>
+    </div>
   </body>
 </html>
