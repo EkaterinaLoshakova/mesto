@@ -1,0 +1,12 @@
+.popup__container {
+  position: relative;
+  max-width: fit-content;
+  height: fit-content;
+  margin: 195px auto 0;
+}
+
+@media screen and (max-width: 768px) {
+  .popup__container {
+    margin-top: 123px;
+  }
+}

@@ -1,0 +1,21 @@
+.popup__close-icon {
+  background-image: url(../../../images/Close\ Icon.png);
+  width: 32px;
+  height: 32px;
+  background-size: cover;
+  border: 0;
+  background-color: inherit;
+  position: absolute;
+  bottom: 338px;
+  left: 438px;
+}
+
+@media screen and (max-width: 768px) {
+  .popup__close-icon {
+    width: 20px;
+    height: 20px;
+    bottom: 338px;
+    left: 262px;
+  }
+}
+
