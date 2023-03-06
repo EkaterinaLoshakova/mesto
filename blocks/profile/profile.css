@@ -1,18 +1,13 @@
 .profile {
-  display: grid;
-  grid-template-columns: 120px 1fr 150px;
-  grid-template-areas: "avatar info add-button";
-  gap: 30px;
-  padding-bottom: 49px;
+   display: flex;
+   justify-content: space-between;
+   padding-bottom: 49px;
+   gap: 30px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1279px) {
   .profile {
-    grid-template-columns: 1fr;
-    grid-template-areas: "avatar"
-                          "info"
-                          "add-button";
+    flex-direction: column;
     padding-bottom: 36px;
-    gap: 26px;
   }
 }

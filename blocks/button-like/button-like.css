@@ -6,3 +6,8 @@
   background-color: white;
   display: block;
 }
+
+.button-like:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}

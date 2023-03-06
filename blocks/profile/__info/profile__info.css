@@ -1,20 +1,19 @@
 .profile__info {
-  grid-area: info;
   align-self: center;
   display: grid;
-  /*grid-template-columns: fit-content(100%)  fit-content(24px);*/
-  grid-template-columns: 1fr fit-content(24px);
+  grid-template-columns: minmax(0, auto) fit-content(24px);
   grid-template-areas: "name button"
                         "description description";
 
   row-gap: 16px;
+  column-gap: 25px;
+  max-width: 550px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 994px) {
   .profile__info {
     row-gap: 7px;
-    grid-template-areas: "name button"
-                        "description description";
-    padding-bottom: 10px;
+    /*padding-bottom: 10px;*/
+    margin: 0 auto;
   }
 }

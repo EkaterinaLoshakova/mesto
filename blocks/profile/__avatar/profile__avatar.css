@@ -3,6 +3,12 @@
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  grid-area: avatar;
-  justify-self: center;
+  align-self: center;
+  margin-right: 30px;
+}
+
+@media screen and (max-width: 994px) {
+  .profile__avatar {
+    margin-right: 0;
+  }
 }

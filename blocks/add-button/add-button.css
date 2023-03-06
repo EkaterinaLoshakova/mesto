@@ -7,12 +7,12 @@
   background-color: black;
   border: 2px solid #FFFFFF;
   border-radius: 2px;
-  grid-area: add-button;
   align-self: center;
   box-sizing: border-box;
+  justify-self: end;
 }
 
-@media screen and (max-width: 768px){
+@media screen and (max-width: 1279px){
   .add-button {
     width: 100%;
   }
