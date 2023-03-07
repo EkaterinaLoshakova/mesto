@@ -16,10 +16,10 @@
   grid-area: button;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 994px) {
   .edit-button {
     width: 18px;
     height: 18px;
-    transform: translate(-19px, 0);
+    /*transform: translate(10px, 0);*/
   }
 }

@@ -1,19 +1,4 @@
 .header {
-  width: 100%;
-  padding: 45px 200px 40px;
-  box-sizing: border-box;
+  border-bottom: 1px solid #545454;
 }
 
-@media screen and (max-width: 1280px) {
-  .header {
-  padding-left: calc(200 * ((100vw - 320px) / (1280 - 320)));
-  padding-right: calc(200 * ((100vw - 320px) / (1280 - 320)));
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .header {
-    padding-bottom: 42px;
-    padding-top: 28px;
-  }
-}

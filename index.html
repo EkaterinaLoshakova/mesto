@@ -9,22 +9,25 @@
   </head>
   <body class="page">
     <div class="page__container">
-      <header class="header">
+      <header class="header header__margin">
         <img src="./images/logo.svg" alt="Место" class="header__logo">
         <div class="header__line"></div>
       </header>
       <main class="content page__margin-left-right">
         <section class="profile">
           <div class="profile__wrapper">
-            <div class="profile__avatar"></div>
-            <div class="profile__info">
-              <h1 class="profile__name">Жак-Ив Кусто</h1>
-              <button class="edit-button hover"></button>
-              <h2 class="profile__job">Исследователь океана</h2>
+            <img src="./images/profile__avatar.jpg" class="profile__avatar" alt="Фото аватара">
+
+
+
+              <div class="profile__info">
+                <h1 class="profile__name">Жак-Ив Кусто</h1>
+                <button class="edit-button hover" type="button" aria-label="Редактировать профиль"></button>
+                <h2 class="profile__job">Исследователь океана</h2>
             </div>
           </div>
 
-          <button class="add-button hover"></button>
+          <button class="add-button hover" type="button" aria-label="Добавить фото"></button>
         </section>
         <section class="photo-gallery">
           <ul class="photo-gallery__list">
@@ -106,21 +109,21 @@
 
     <div class="popup">
       <div class="popup__container">
-        <button class="popup__close-icon hover"></button>
-        <form class="form">
+        <button class="popup__close-icon hover" type="button" aria-label="Закрыть"></button>
+        <form class="form" name="Редактирование профиля">
           <p class="form__title">Редактировать профиль</p>
           <div class="popup__input">
             <input
               type="text"
               id="name"
               class="form__field form__field_value_name"
-              value="имя"
+              name="Имя"
             >
             <input
               type="text"
               id="description"
               class="form__field form__field_value_job"
-              value="работа"
+              name="Работа"
             >
           </div>
           <button class="button-submit" type="submit">
