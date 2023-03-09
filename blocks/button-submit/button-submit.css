@@ -13,6 +13,7 @@
 @media screen and (max-width: 768px) {
   .button-submit {
     height: 46px;
+    font-size: 14px;
   }
 }
 
