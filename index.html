@@ -1,30 +1,32 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./pages/index.css" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./pages/index.css">
     <title>Место</title>
   </head>
   <body class="page">
     <div class="page__container">
-      <header class="header">
-        <img src="./images/logo.svg" alt="Место" class="header__logo" />
-        <div class="header__line"></div>
+      <header class="header page__header-margin">
+        <img src="./images/logo.svg" alt="Место" class="header__logo">
       </header>
       <main class="content page__margin-left-right">
         <section class="profile">
           <div class="profile__wrapper">
-            <div class="profile__avatar"></div>
-            <div class="profile__info">
-              <h1 class="profile__name">Жак-Ив Кусто</h1>
-              <button class="edit-button hover"></button>
-              <h2 class="profile__job">Исследователь океана</h2>
+            <img src="./images/profile__avatar.jpg" class="profile__avatar" alt="Фото аватара">
+
+
+
+              <div class="profile__info">
+                <h1 class="profile__name">Жак-Ив Кусто</h1>
+                <button class="edit-button hover" type="button" aria-label="Редактировать профиль"></button>
+                <h2 class="profile__job">Исследователь океана</h2>
             </div>
           </div>
 
-          <button class="add-button hover"></button>
+          <button class="add-button hover" type="button" aria-label="Добавить фото"></button>
         </section>
 
           <section class="photo-gallery">
@@ -48,69 +50,69 @@
             <li class="photo-gallery__item">
               <img
                 src="./images/balls.jpg"
-                alt="Шары"
+                alt="Воздушные шары в небе"
                 class="photo-gallery__image"
-              />
+              >
               <div class="photo-gallery__wrapper">
                 <h3 class="photo-gallery__title">Каппадокия</h3>
-                <button class="button-like"></button>
+                <button class="button-like" aria-label="Поставить лайк"></button>
               </div>
             </li>
             <li class="photo-gallery__item">
               <img
                 src="./images/bike.jpg"
-                alt=""
+                alt="Велосипед на фоне пальм"
                 class="photo-gallery__image"
-              />
+              >
               <div class="photo-gallery__wrapper">
                 <h3 class="photo-gallery__title">
                   Балииииииииииииииииииииииииииииииииииииии
                 </h3>
-                <button class="button-like"></button>
+                <button class="button-like" aria-label="Поставить лайк"></button>
               </div>
             </li>
             <li class="photo-gallery__item">
               <img
                 src="./images/maldives.jpg"
-                alt=""
+                alt="Вид сверху на океан"
                 class="photo-gallery__image"
-              />
+              >
               <div class="photo-gallery__wrapper">
                 <h3 class="photo-gallery__title">Мальдивы</h3>
-                <button class="button-like"></button>
+                <button class="button-like" aria-label="Поставить лайк"></button>
               </div>
             </li>
             <li class="photo-gallery__item">
               <img
                 src="./images/plane.jpg"
-                alt=""
+                alt="Вид из окна самолета"
                 class="photo-gallery__image"
-              />
+              >
               <div class="photo-gallery__wrapper">
                 <h3 class="photo-gallery__title">Полёт</h3>
-                <button class="button-like"></button>
+                <button class="button-like" aria-label="Поставить лайк"></button>
               </div>
             </li>
             <li class="photo-gallery__item">
               <img
                 src="./images/road.jpg"
-                alt=""
+                alt="Дорога между гор"
                 class="photo-gallery__image"
-              />
+              >
               <div class="photo-gallery__wrapper">
                 <h3 class="photo-gallery__title">Аризона</h3>
-                <button class="button-like"></button>
+                <button class="button-like" aria-label="Поставить лайк"></button>
               </div>
             </li>
             <li class="photo-gallery__item">
               <img
                 src="./images/santorini.jpg"
-                alt=""
+                alt="Вид из дома на океан в Санторини"
                 class="photo-gallery__image"
-              />
+              >
               <div class="photo-gallery__wrapper">
                 <h3 class="photo-gallery__title">Санторини</h3>
-                <button class="button-like"></button>
+                <button class="button-like" aria-label="Поставить лайк"></button>
               </div>
             </li>
           </ul> -->
@@ -123,25 +125,25 @@
  <!--Попап редактирования профайла-->
     <div class="popup popup_edit-profile">
       <div class="popup__container">
-        <button class="popup__close-icon hover"></button>
-        <form action="" class="form">
+        <button class="popup__close-icon hover" type="button" aria-label="Закрыть"></button>
+        <form class="form" name="Редактирование профиля">
           <p class="form__title">Редактировать профиль</p>
           <div class="popup__input">
             <input
               type="text"
               id="name"
               class="form__field form__field_value_name"
-              value="имя"
-            />
+              name="name"
+            >
             <input
               type="text"
               id="description"
               class="form__field form__field_value_job"
-              value="работа"
-            />
+              name="job"
+            >
           </div>
           <button class="button-submit" type="submit">
-            <p class="button-submit__text">Сохранить</p>
+           Сохранить
           </button>
         </form>
       </div>
@@ -169,7 +171,7 @@
             />
           </div>
           <button class="button-submit" type="submit">
-            <p class="button-submit__text">Сохранить</p>
+           Сохранить
           </button>
         </form>
       </div>
