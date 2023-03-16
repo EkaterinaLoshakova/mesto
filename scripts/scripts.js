@@ -1,40 +1,172 @@
-const popupElement = document.querySelector('.popup');
+const popupElement = document.querySelector('.popup'); //удалить
 const popupCloseButtonElement = popupElement.querySelector('.popup__close-icon');
-const popupButtonEdit = document.querySelector('.edit-button');
+//let formElement = popupElement.querySelector('.form'); //удалить
+
+
+
+
+/*Попапы*/
+const popupEditProfile = document.querySelector('.popup_edit-profile');
+const popupAddCard = document.querySelector('.popup_add-card');
+const popupImage = document.querySelector('.popup_image');
+
+/* Формы */
+let formEditProfile = popupEditProfile.querySelector('.form');
+let formAddCard = popupAddCard.querySelector('.form');
+
+/*Кнопки открытия попоапов*/
+const popupButtonEdit = document.querySelector('.edit-button')
+const buttonAddCard = document.querySelector('.add-button');
+
+/*Кнопки закрытия попапов*/
+const popupEditProfileClose = popupEditProfile.querySelector('.popup__close-icon');
+const popupAddCardClose = popupAddCard.querySelector('.popup__close-icon');
+const popupImageClose = popupImage.querySelector('.popup__close-icon');
+
+/*Поля ввода редактирования профайла*/
+const nameInput = popupEditProfile.querySelector('.form__field_value_name');
+const jobInput = popupEditProfile.querySelector('.form__field_value_job');
+
+/*Текстовые значения в профайле*/
 const nameProfile = document.querySelector('.profile__name');
 const jobProfile = document.querySelector('.profile__job');
-const nameInput = document.querySelector('.form__field_value_name');
-const jobInput = document.querySelector('.form__field_value_job');
-let formElement = popupElement.querySelector('.form');
 
-//let nameInput = popupElement.querySelector('.popup__input-name');
-//let jobInput = popupElement.querySelector('.popup__input-job');
+/*Поля ввода добавления фото*/
+const placeInput = popupAddCard.querySelector('.form__field_value_place');
+const srcInput = popupAddCard.querySelector('.form__field_value_src');
 
-const openPopup = function () {
-  popupElement.classList.add('popup_opened');
-  nameInput.value = nameProfile.textContent;
-  jobInput.value = jobProfile.textContent;
+const photoGallery = document.querySelector('.photo-gallery__list');
+const cardTemplate = document.querySelector('#photo-gallery').content;
 
+
+
+
+
+
+console.log(popupAddCard);
+
+const initialCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
+/*Создание карточки*/
+const createCard =  function(item) {
+  const cardElement = cardTemplate.querySelector('.photo-gallery__item').cloneNode(true);
+  const cardImage =  cardElement.querySelector('.photo-gallery__image');
+  const cardTitle = cardElement.querySelector('.photo-gallery__title');
+  cardImage.src = item.link;
+  cardImage.alt = item.name;
+  cardTitle.textContent = item.name;
+  const cardLikeButton = cardElement.querySelector('.button-like');
+  const trashButton = cardElement.querySelector('.button-trash');
+
+  cardElement.addEventListener('click', function(){
+    openPopup(popupImage);
+  });
+
+
+  /*Удаление карточки при нажатии на корзину*/
+  trashButton.addEventListener('click', function() {
+    cardElement.remove();
+  });
+  /*Переключение кнопки лайка*/
+  cardLikeButton.addEventListener('click', function(evt) {
+      evt.target.classList.toggle('button-like_black');
+      });
+  return cardElement;
 };
 
-const closePopup = function () {
-  popupElement.classList.remove('popup_opened');
+/*Функция добавления карточки из поля формы*/
+function handleAddSubmit (evt) {
+  evt.preventDefault();
+   const newCard = createCard({
+    name: placeInput.value,
+    link: srcInput.value
+  });
+  photoGallery.prepend(newCard);
+  closePopup(popupAddCard);
 };
+formAddCard.addEventListener('submit', handleAddSubmit);
 
+/*Добавление карточек из массива в JS*/
+initialCards.forEach(function(item) {
+  const newCard = createCard(item);
+  photoGallery.append(newCard);
+});
+
+/* Открытие popap универсальная функция*/
+const openPopup = function (popup) {
+  popup.classList.add('popup_opened');
+}
+
+const closePopup = function (popup) {
+  popup.classList.remove('popup_opened');
+ };
+
+/*Вставка значений из формы, кнопка сохранить на формк редактирования профиля*/
 function handleFormSubmit (evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
                                               // Так мы можем определить свою логику отправки.
                                               // О том, как это делать, расскажем позже.
 
-  nameProfile.textContent = nameInput.value;// Получите значение полей jobInput и nameInput из свойства value
-  jobProfile.textContent = jobInput.value;
-  // Выберите элементы, куда должны быть вставлены значения полей
-
-  // Вставьте новые значения с помощью textContent
-  closePopup();
+  nameProfile.textContent = nameInput.value;// Получение  значений из полей инпут
+  jobProfile.textContent = jobInput.value;// Получение  значений из полей инпут
+  closePopup(popupEditProfile);
 };
 
 
-popupButtonEdit.addEventListener("click", openPopup);
-popupCloseButtonElement.addEventListener("click", closePopup);
-formElement.addEventListener('submit', handleFormSubmit);
+
+/* Открытие попапа редактирования профайла */
+popupButtonEdit.addEventListener("click", function() {
+  openPopup(popupEditProfile);
+  nameInput.value = nameProfile.textContent;
+  jobInput.value = jobProfile.textContent;
+});
+
+ /* Открытие попапа добавления фото*/
+ buttonAddCard.addEventListener("click", function () {
+  openPopup(popupAddCard);
+  });
+
+
+
+/*Закрытие попапа редактировния профайла*/
+popupCloseButtonElement.addEventListener("click", function() {
+  closePopup(popupEditProfile);
+});
+/*Закрытие попапа добавления карточек*/
+popupAddCardClose.addEventListener("click", function() {
+  closePopup(popupAddCard)
+});
+
+/*Закрытие попапа с картинкой*/
+popupImageClose.addEventListener('click', function() {
+  closePopup(popupImage);
+})
+
+formEditProfile.addEventListener('submit', handleFormSubmit);
+
+

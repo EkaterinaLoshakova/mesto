@@ -26,8 +26,25 @@
 
           <button class="add-button hover"></button>
         </section>
-        <section class="photo-gallery">
-          <ul class="photo-gallery__list">
+
+          <section class="photo-gallery">
+         <ul class="photo-gallery__list"></ul>
+            <template id="photo-gallery">
+                <li class="photo-gallery__item">
+                  <img
+                    src="#"
+                    alt=" "
+                    class="photo-gallery__image"
+                  />
+                   <button class="button-trash"></button>
+                  <div class="photo-gallery__wrapper">
+                    <h3 class="photo-gallery__title"></h3>
+                    <button class="button-like"></button>
+                  </div>
+                </li>
+            </template>
+          </section>
+           <!--<ul class="photo-gallery__list">
             <li class="photo-gallery__item">
               <img
                 src="./images/balls.jpg"
@@ -96,15 +113,15 @@
                 <button class="button-like"></button>
               </div>
             </li>
-          </ul>
+          </ul> -->
         </section>
       </main>
       <footer class="footer page__margin-left-right">
         <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
       </footer>
     </div>
-
-    <div class="popup popap_close-icon">
+ <!--Попап редактирования профайла-->
+    <div class="popup popup_edit-profile">
       <div class="popup__container">
         <button class="popup__close-icon hover"></button>
         <form action="" class="form">
@@ -113,13 +130,13 @@
             <input
               type="text"
               id="name"
-              class="form__field  form__field_value_name"
+              class="form__field form__field_value_name"
               value="имя"
             />
             <input
               type="text"
               id="description"
-              class="form__field  form__field_value_job"
+              class="form__field form__field_value_job"
               value="работа"
             />
           </div>
@@ -129,6 +146,50 @@
         </form>
       </div>
     </div>
+<!--Попап добавления фото-->
+    <div class="popup popup_add-card ">
+      <div class="popup__container">
+        <button class="popup__close-icon hover"></button>
+        <form action="" class="form">
+          <p class="form__title">Новое место</p>
+          <div class="popup__input">
+            <input
+              type="text"
+              id="place"
+              class="form__field form__field_value_place"
+              value="Название"
+              placeholder="Название"
+            />
+            <input
+              type="text"
+              id="src"
+              class="form__field form__field_value_src"
+              value="Ссылка на картинку"
+              placeholder="Ссылка на картинку"
+            />
+          </div>
+          <button class="button-submit" type="submit">
+            <p class="button-submit__text">Сохранить</p>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!--Попап открытия фото-->
+    <div class="popup popup_image popup_opened">
+           <figure class="popup__figure">
+            <button class="popup__close-icon hover"></button>
+            <img
+                    src= 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+                    alt=" "
+                    class="popup__figure-image"
+                  />
+              <figcaption class="popup__figure-caption"></figcaption>
+           </figure>
+    </div>
+
+
+
     <script src="./scripts/scripts.js"></script>
   </body>
 </html>
