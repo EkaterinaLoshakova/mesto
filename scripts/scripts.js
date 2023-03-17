@@ -100,7 +100,7 @@ const createCard =  function(item) {
   });
   /*Переключение кнопки лайка*/
   cardLikeButton.addEventListener('click', function(evt) {
-      evt.target.classList.toggle('button-like_black');
+      evt.target.classList.toggle('button-like_active');
       });
   return cardElement;
 };
