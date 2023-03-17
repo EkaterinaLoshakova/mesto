@@ -6,9 +6,9 @@ const popupCloseButtonElement = popupElement.querySelector('.popup__close-icon')
 
 
 /*Попапы*/
-const popupEditProfile = document.querySelector('.popup_edit-profile');
-const popupAddCard = document.querySelector('.popup_add-card');
-const popupImage = document.querySelector('.popup_image');
+const popupEditProfile = document.querySelector('.popup_popup_edit-profile');
+const popupAddCard = document.querySelector('.popup_popup_add-card');
+const popupImage = document.querySelector('.popup_popup_image');
 
 /* Формы */
 let formEditProfile = popupEditProfile.querySelector('.form');
@@ -38,8 +38,8 @@ const srcInput = popupAddCard.querySelector('.form__field_value_src');
 const photoGallery = document.querySelector('.photo-gallery__list');
 const cardTemplate = document.querySelector('#photo-gallery').content;
 
-
-
+const imagePopupFigure = document.querySelector('.popup__figure-image');
+const captionPopupFigure = document.querySelector('.popup__figure-caption');
 
 
 
@@ -72,6 +72,14 @@ const initialCards = [
   }
 ];
 
+
+function openFigurePopup (name, link) {
+  imagePopupFigure.src = link;
+  imagePopupFigure.alt = name;
+  captionPopupFigure.textContent = name;
+  openPopup(popupImage);
+}
+
 /*Создание карточки*/
 const createCard =  function(item) {
   const cardElement = cardTemplate.querySelector('.photo-gallery__item').cloneNode(true);
@@ -83,13 +91,11 @@ const createCard =  function(item) {
   const cardLikeButton = cardElement.querySelector('.button-like');
   const trashButton = cardElement.querySelector('.button-trash');
 
-  cardElement.addEventListener('click', function(){
-    openPopup(popupImage);
-  });
 
+  cardImage.addEventListener('click', () => openFigurePopup(item.name, item.link));
 
   /*Удаление карточки при нажатии на корзину*/
-  trashButton.addEventListener('click', function() {
+  trashButton.addEventListener('click', () => {
     cardElement.remove();
   });
   /*Переключение кнопки лайка*/
@@ -107,6 +113,7 @@ function handleAddSubmit (evt) {
     link: srcInput.value
   });
   photoGallery.prepend(newCard);
+  evt.target.reset();
   closePopup(popupAddCard);
 };
 formAddCard.addEventListener('submit', handleAddSubmit);
