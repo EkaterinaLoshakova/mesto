@@ -1,52 +1,58 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./pages/index.css">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./pages/index.css" />
     <title>Место</title>
   </head>
   <body class="page">
     <div class="page__container">
       <header class="header page__header-margin">
-        <img src="./images/logo.svg" alt="Место" class="header__logo">
+        <img src="./images/logo.svg" alt="Место" class="header__logo" />
       </header>
       <main class="content page__margin-left-right">
         <section class="profile">
           <div class="profile__wrapper">
-            <img src="./images/profile__avatar.jpg" class="profile__avatar" alt="Фото аватара">
+            <img
+              src="./images/profile__avatar.jpg"
+              class="profile__avatar"
+              alt="Фото аватара"
+            />
 
-
-
-              <div class="profile__info">
-                <h1 class="profile__name">Жак-Ив Кусто</h1>
-                <button class="edit-button hover" type="button" aria-label="Редактировать профиль"></button>
-                <h2 class="profile__job">Исследователь океана</h2>
+            <div class="profile__info">
+              <h1 class="profile__name">Жак-Ив Кусто</h1>
+              <button
+                class="edit-button hover"
+                type="button"
+                aria-label="Редактировать профиль"
+              ></button>
+              <h2 class="profile__job">Исследователь океана</h2>
             </div>
           </div>
 
-          <button class="add-button hover" type="button" aria-label="Добавить фото"></button>
+          <button
+            class="add-button hover"
+            type="button"
+            aria-label="Добавить фото"
+          ></button>
         </section>
 
-          <section class="photo-gallery">
-         <ul class="photo-gallery__list"></ul>
-            <template id="photo-gallery">
-                <li class="photo-gallery__item">
-                  <img
-                    src="#"
-                    alt=" "
-                    class="photo-gallery__image"
-                  />
-                   <button class="button-trash"></button>
-                  <div class="photo-gallery__wrapper">
-                    <h3 class="photo-gallery__title"></h3>
-                    <button class="button-like"></button>
-                  </div>
-                </li>
-            </template>
-          </section>
-           <!--<ul class="photo-gallery__list">
+        <section class="photo-gallery">
+          <ul class="photo-gallery__list"></ul>
+          <template id="photo-gallery">
+            <li class="photo-gallery__item">
+              <img src="#" alt=" " class="photo-gallery__image" />
+              <button class="button-trash"></button>
+              <div class="photo-gallery__wrapper">
+                <h3 class="photo-gallery__title"></h3>
+                <button class="button-like"></button>
+              </div>
+            </li>
+          </template>
+        </section>
+        <!--<ul class="photo-gallery__list">
             <li class="photo-gallery__item">
               <img
                 src="./images/balls.jpg"
@@ -116,17 +122,20 @@
               </div>
             </li>
           </ul> -->
-
       </main>
       <footer class="footer page__margin-left-right">
         <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
       </footer>
     </div>
- <!--Попап редактирования профайла-->
+    <!--Попап редактирования профайла-->
     <div class="popup popup_popup_edit-profile">
       <div class="popup__container">
-        <button class="popup__close-icon hover" type="button" aria-label="Закрыть"></button>
-        <form class="form" name="Редактирование профиля">
+        <button
+          class="popup__close-icon hover"
+          type="button"
+          aria-label="Закрыть"
+        ></button>
+        <form class="form" name="profile-form">
           <p class="form__title">Редактировать профиль</p>
           <div class="popup__input">
             <input
@@ -134,25 +143,23 @@
               id="name"
               class="form__field form__field_value_name"
               name="name"
-            >
+            />
             <input
               type="text"
               id="description"
               class="form__field form__field_value_job"
               name="job"
-            >
+            />
           </div>
-          <button class="button-submit" type="submit">
-           Сохранить
-          </button>
+          <button class="button-submit" type="submit">Сохранить</button>
         </form>
       </div>
     </div>
-<!--Попап добавления фото-->
-    <div class="popup popup_popup_add-card ">
+    <!--Попап добавления фото-->
+    <div class="popup popup_popup_add-card">
       <div class="popup__container">
         <button class="popup__close-icon hover"></button>
-        <form action="" class="form">
+        <form action="" class="form" name="card-form">
           <p class="form__title">Новое место</p>
           <div class="popup__input">
             <input
@@ -170,27 +177,19 @@
               placeholder="Ссылка на картинку"
             />
           </div>
-          <button class="button-submit" type="submit">
-           Сохранить
-          </button>
+          <button class="button-submit" type="submit">Сохранить</button>
         </form>
       </div>
     </div>
 
     <!--Попап открытия фото-->
     <div class="popup popup_popup_image">
-           <figure class="popup__figure">
-            <button class="popup__close-icon hover"></button>
-            <img
-                    src= '#'
-                    alt= "#"
-                    class="popup__figure-image"
-                  />
-              <figcaption class="popup__figure-caption"></figcaption>
-           </figure>
+      <figure class="popup__figure">
+        <button class="popup__close-icon hover"></button>
+        <img src="#" alt="#" class="popup__figure-image" />
+        <figcaption class="popup__figure-caption"></figcaption>
+      </figure>
     </div>
-
-
 
     <script src="./scripts/scripts.js"></script>
   </body>
