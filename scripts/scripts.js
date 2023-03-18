@@ -100,7 +100,7 @@ const createCard = function (item) {
 };
 
 /*Функция добавления карточки из поля формы*/
-const formAddSubmit = function handleAddSubmit(evt) {
+function handleAddSubmit(evt) {
   evt.preventDefault();
   const newCard = createCard({
     name: placeInput.value,
@@ -109,12 +109,12 @@ const formAddSubmit = function handleAddSubmit(evt) {
   photoGallery.prepend(newCard);
   evt.target.reset();
   closePopup(popupAddCard);
-};
+}
 
 /*Отправка формы редактирования профайла*/
 formEditProfile.addEventListener("submit", handleProfileFormSubmit);
 /*Отправка формы добавления карточек*/
-formAddCard.addEventListener("submit", formAddSubmit);
+formAddCard.addEventListener("submit", handleAddSubmit);
 
 /*Добавление карточек из массива в JS*/
 initialCards.forEach(function (item) {
@@ -152,7 +152,6 @@ popupButtonEdit.addEventListener("click", function () {
 /* Открытие попапа добавления фото*/
 buttonAddCard.addEventListener("click", function () {
   openPopup(popupAddCard);
-  formAddCard.reset();
 });
 
 /*Закрытие попапа редактировния профайла*/
