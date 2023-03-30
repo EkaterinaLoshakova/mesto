@@ -1,3 +1,6 @@
+/*Кнопки закрытия попапов */
+const popupsClose = document.querySelectorAll(".popup__close-icon");
+const popups = document.querySelectorAll(".popup");
 /*Попапы*/
 const popupEditProfile = document.querySelector(".popup_popup_edit-profile");
 const popupAddCard = document.querySelector(".popup_popup_add-card");
@@ -35,8 +38,6 @@ const cardTemplate = document.querySelector("#photo-gallery").content;
 const imagePopupFigure = document.querySelector(".popup__figure-image");
 const captionPopupFigure = document.querySelector(".popup__figure-caption");
 
-console.log(popupAddCard);
-
 const initialCards = [
   {
     name: "Архыз",
@@ -63,6 +64,31 @@ const initialCards = [
     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
   },
 ];
+
+function closePopupOverlay(evt) {
+  popups.forEach((popap) => {
+    if (evt.target === evt.currentTarget) {
+      closePopup(popap);
+    }
+  });
+}
+popups.forEach((popup) => {
+  popup.addEventListener("click", closePopupOverlay);
+});
+
+/*Закрытие попапов (ищем все иконки закрытия) по клику и по кнопке esc*/
+popupsClose.forEach((element) => {
+  const popup = element.closest(".popup");
+  element.addEventListener("keydown", () => {
+    const key = evt.key;
+    if (key === "Escape") {
+      closePopup(popup);
+    }
+  });
+  element.addEventListener("click", () => {
+    closePopup(popup);
+  });
+});
 
 function openFigurePopup(name, link) {
   imagePopupFigure.src = link;
@@ -154,16 +180,16 @@ buttonAddCard.addEventListener("click", function () {
   openPopup(popupAddCard);
 });
 
-/*Закрытие попапа редактировния профайла*/
-popupEditProfileClose.addEventListener("click", function () {
-  closePopup(popupEditProfile);
-});
-/*Закрытие попапа добавления карточек*/
-popupAddCardClose.addEventListener("click", function (evt) {
-  closePopup(popupAddCard);
-});
+// /*Закрытие попапа редактировния профайла*/
+// popupEditProfileClose.addEventListener("click", function () {
+//   closePopup(popupEditProfile);
+// });
+// /*Закрытие попапа добавления карточек*/
+// popupAddCardClose.addEventListener("click", function (evt) {
+//   closePopup(popupAddCard);
+// });
 
-/*Закрытие попапа с картинкой*/
-popupImageClose.addEventListener("click", function () {
-  closePopup(popupImage);
-});
+// /*Закрытие попапа с картинкой*/
+// popupImageClose.addEventListener("click", function () {
+//   closePopup(popupImage);
+// });
