@@ -38,6 +38,12 @@ const cardTemplate = document.querySelector("#photo-gallery").content;
 const imagePopupFigure = document.querySelector(".popup__figure-image");
 const captionPopupFigure = document.querySelector(".popup__figure-caption");
 
+/*Для функции  сброса ошибок*/
+const buttonSubmitEditProfile = formEditProfile.querySelector(".button-submit");
+const inputsEditProfile = formEditProfile.querySelectorAll(".form__field");
+const buttonSubmitAddCard = formAddCard.querySelector(".button-submit");
+const inputsAddCard = formAddCard.querySelectorAll(".form__field");
+
 const initialCards = [
   {
     name: "Архыз",
@@ -64,7 +70,7 @@ const initialCards = [
     link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
   },
 ];
-
+/* Функция закрытия попапа по overlay */
 function closePopupOverlay(evt) {
   popups.forEach((popap) => {
     if (evt.target === evt.currentTarget) {
@@ -72,19 +78,22 @@ function closePopupOverlay(evt) {
     }
   });
 }
+/* Закрытие попапоа по клику на overlay*/
 popups.forEach((popup) => {
   popup.addEventListener("click", closePopupOverlay);
 });
 
-/*Закрытие попапов (ищем все иконки закрытия) по клику и по кнопке esc*/
+/* Закрытие попапа по кнопке eskape*/
+function closePopupEscape(evt) {
+  if (evt.key === "Escape") {
+    const popup = document.querySelector(".popup_opened");
+    closePopup(popup);
+  }
+}
+
+/*Закрытие попапов (ищем все иконки закрытия) по клику */
 popupsClose.forEach((element) => {
   const popup = element.closest(".popup");
-  element.addEventListener("keydown", () => {
-    const key = evt.key;
-    if (key === "Escape") {
-      closePopup(popup);
-    }
-  });
   element.addEventListener("click", () => {
     closePopup(popup);
   });
@@ -151,10 +160,12 @@ initialCards.forEach(function (item) {
 /* Открытие popap универсальная функция*/
 const openPopup = function (popup) {
   popup.classList.add("popup_opened");
+  document.addEventListener("keydown", closePopupEscape);
 };
 
 const closePopup = function (popup) {
   popup.classList.remove("popup_opened");
+  document.removeEventListener("keydown", closePopupEscape);
 };
 
 /*Вставка значений из формы, кнопка сохранить на формк редактирования профиля*/
@@ -170,13 +181,24 @@ function handleProfileFormSubmit(evt) {
 
 /* Открытие попапа редактирования профайла */
 popupButtonEdit.addEventListener("click", function () {
-  openPopup(popupEditProfile);
+  resetErrorInput(formEditProfile);
   nameInput.value = nameProfile.textContent;
   jobInput.value = jobProfile.textContent;
+  toggleButton(
+    inputsEditProfile,
+    buttonSubmitEditProfile,
+    objectValidation.inactiveButtonClass
+  );
+  openPopup(popupEditProfile);
 });
 
 /* Открытие попапа добавления фото*/
 buttonAddCard.addEventListener("click", function () {
+  toggleButton(
+    inputsAddCard,
+    buttonSubmitAddCard,
+    objectValidation.inactiveButtonClass
+  );
   openPopup(popupAddCard);
 });
 

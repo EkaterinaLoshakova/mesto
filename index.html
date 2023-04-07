@@ -135,21 +135,34 @@
           type="button"
           aria-label="Закрыть"
         ></button>
-        <form class="form" name="profile-form">
-          <p class="form__title">Редактировать профиль</p>
+        <p class="popup__title">Редактировать профиль</p>
+        <form class="form" name="profile-form" novalidate>
+          <!-- <p class="form__title">Редактировать профиль</p> -->
           <div class="popup__input">
-            <input
-              type="text"
-              id="name"
-              class="form__field form__field_value_name"
-              name="name"
-            />
-            <input
-              type="text"
-              id="description"
-              class="form__field form__field_value_job"
-              name="job"
-            />
+            <div class="popup__input-and-error">
+              <input
+                type="text"
+                id="name"
+                class="form__field form__field_value_name"
+                name="name"
+                minlength="2"
+                maxlength="40"
+                required
+              />
+              <span id="name-error" class="error"></span>
+            </div>
+            <div class="popup__input-and-error">
+              <input
+                type="text"
+                id="job"
+                class="form__field form__field_value_job"
+                name="job"
+                minlength="2"
+                maxlength="200"
+                required
+              />
+              <span id="job-error" class="error"></span>
+            </div>
           </div>
           <button class="button-submit" type="submit">Сохранить</button>
         </form>
@@ -159,21 +172,31 @@
     <div class="popup popup_popup_add-card">
       <div class="popup__container">
         <button class="popup__close-icon hover"></button>
+        <p class="popup__title">Новое место</p>
         <form action="" class="form" name="card-form">
-          <p class="form__title">Новое место</p>
           <div class="popup__input">
-            <input
-              type="text"
-              id="place"
-              class="form__field form__field_value_place"
-              placeholder="Название"
-            />
-            <input
-              type="text"
-              id="src"
-              class="form__field form__field_value_src"
-              placeholder="Ссылка на картинку"
-            />
+            <div class="popup__input-and-error">
+              <input
+                type="text"
+                id="place"
+                class="form__field form__field_value_place"
+                placeholder="Название"
+                minlength="2"
+                maxlength="30"
+                required
+              />
+              <span id="place-error" class="error"></span>
+            </div>
+            <div class="popup__input-and-error">
+              <input
+                type="url"
+                id="src"
+                class="form__field form__field_value_src"
+                placeholder="Ссылка на картинку"
+                required
+              />
+              <span id="src-error" class="error"></span>
+            </div>
           </div>
           <button class="button-submit" type="submit">Сохранить</button>
         </form>
@@ -188,8 +211,7 @@
         <figcaption class="popup__figure-caption"></figcaption>
       </figure>
     </div>
-
-    <script src="./scripts/scripts.js"></script>
-    <script src="./scripts/validate.js"></script>
+    <script defer src="./scripts/validate.js"></script>
+    <script defer src="./scripts/scripts.js"></script>
   </body>
 </html>
