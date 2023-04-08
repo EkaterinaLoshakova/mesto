@@ -94,7 +94,7 @@ function disableButtonSubmit(button, inactiveButtonClass) {
 /*Сброс невалидности инпутов */
 function resetErrorInput(form) {
   form.querySelectorAll(objectValidation.inputSelector).forEach((input) => {
-    const errorInputText = document.querySelector(`#${input.id}-error`);
+    const errorInputText = form.querySelector(`#${input.id}-error`);
     if (!input.validity.valid) {
       hideError(
         input,
