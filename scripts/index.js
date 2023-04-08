@@ -46,16 +46,14 @@ const inputsAddCard = formAddCard.querySelectorAll(".form__field");
 
 /* Функция закрытия попапа по overlay */
 function closePopupOverlay(evt) {
-  popups.forEach((popap) => {
-    if (evt.target === evt.currentTarget) {
-      closePopup(popap);
-    }
-  });
+  if (evt.target === evt.currentTarget) {
+    closePopup(evt.target);
+  }
 }
 /* Закрытие попапоа по клику на overlay*/
-popups.forEach((popup) => {
-  popup.addEventListener("click", closePopupOverlay);
-});
+// popups.forEach((popup) => {
+//   popup.addEventListener("click", closePopupOverlay);
+// });
 
 /* Закрытие попапа по кнопке eskape*/
 function closePopupEscape(evt) {
@@ -68,6 +66,8 @@ function closePopupEscape(evt) {
 /*Закрытие попапов (ищем все иконки закрытия) по клику */
 popupsClose.forEach((element) => {
   const popup = element.closest(".popup");
+  popup.addEventListener("click", closePopupOverlay);
+  popup.addEventListener("click", closePopupOverlay);
   element.addEventListener("click", () => {
     closePopup(popup);
   });

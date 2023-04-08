@@ -41,4 +41,4 @@
 @import url(../blocks/hover/hover.css);
 @import url(../blocks/error/error.css);
 @import url(../blocks/error/_visible/error_visible.css);
-@import url(../blocks/button-submit/_invalid/button-submit_disabled.css);
+@import url(../blocks/button-submit/_disabled/button-submit_disabled.css);

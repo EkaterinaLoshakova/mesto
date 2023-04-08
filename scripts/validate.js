@@ -14,11 +14,12 @@ const enableValidation = (object) => {
     const inputs = form.querySelectorAll(object.inputSelector);
     const button = form.querySelector(object.submitButtonSelector);
     setEventListeners(
+      form,
       inputs,
       button,
-      objectValidation.inactiveButtonClass,
-      objectValidation.inputErrorClass,
-      objectValidation.errorClass
+      object.inactiveButtonClass,
+      object.inputErrorClass,
+      object.errorClass
     );
   });
 };
@@ -27,6 +28,7 @@ enableValidation(objectValidation);
 
 /* Навешиваем слушателей ввода на инпуты */
 function setEventListeners(
+  form,
   inputsObj,
   button,
   inactiveButtonClass,
@@ -35,7 +37,7 @@ function setEventListeners(
 ) {
   inputsObj.forEach((input) => {
     input.addEventListener("input", () => {
-      checkInputValidity(input, inputErrorClass, errorClass);
+      checkInputValidity(form, input, inputErrorClass, errorClass);
       toggleButton(inputsObj, button, inactiveButtonClass);
     });
   });
@@ -50,8 +52,8 @@ function toggleButton(inputs, button, inactiveButtonClass) {
 }
 
 /* Функция проверки поля на валидность */
-function checkInputValidity(input, inputErrorClass, errorClass) {
-  const errorContainer = document.querySelector(`#${input.id}-error`);
+function checkInputValidity(form, input, inputErrorClass, errorClass) {
+  const errorContainer = form.querySelector(`#${input.id}-error`);
   if (input.validity.valid) {
     hideError(input, errorContainer, inputErrorClass, errorClass);
   } else {

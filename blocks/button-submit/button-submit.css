@@ -8,6 +8,7 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 1.22;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 768px) {
@@ -17,8 +18,6 @@
   }
 }
 
-
 .button-submit:hover {
-  cursor: pointer;
-  opacity: 0.8;
+  background: rgba(0, 0, 0, 0.8);
 }
