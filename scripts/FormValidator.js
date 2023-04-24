@@ -56,7 +56,7 @@ export default class FormValidator {
     this._inputs.forEach((input) => {
       input.addEventListener("input", () => {
         this._checkInputValidity(input);
-        this.toggleButton(input);
+        this.toggleButton();
       });
     });
   }
@@ -71,7 +71,7 @@ export default class FormValidator {
       if (!input.validity.valid) {
         this._hideError(input, errorContainer);
       }
-      this._disableButtonSubmit();
     });
+    this._disableButtonSubmit();
   }
 }

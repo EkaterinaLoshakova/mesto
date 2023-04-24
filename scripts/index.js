@@ -86,7 +86,6 @@ function closePopupEscape(evt) {
 popupsClose.forEach((element) => {
   const popup = element.closest(".popup");
   popup.addEventListener("click", closePopupOverlay);
-  popup.addEventListener("click", closePopupOverlay);
   element.addEventListener("click", () => {
     closePopup(popup);
   });
@@ -99,46 +98,21 @@ function openFigurePopup(name, link) {
   openPopup(popupImage);
 }
 
-/*Создание карточки*/
-//const createCard = function (item) {
-// const cardElement = cardTemplate
-//   .querySelector(".photo-gallery__item")
-//   .cloneNode(true);
-// const cardImage = cardElement.querySelector(".photo-gallery__image");
-// const cardTitle = cardElement.querySelector(".photo-gallery__title");
-// cardImage.alt = item.name;
-// cardImage.src = item.link;
-// cardTitle.textContent = item.name;
-// const cardLikeButton = cardElement.querySelector(".button-like");
-// const trashButton = cardElement.querySelector(".button-trash");
-// cardImage.addEventListener("click", () =>
-//   openFigurePopup(item.name, item.link)
-// );
-// /*Удаление карточки при нажатии на корзину*/
-// trashButton.addEventListener("click", () => {
-//   cardElement.remove();
-// });
-// /*Переключение кнопки лайка*/
-// cardLikeButton.addEventListener("click", function (evt) {
-//   evt.target.classList.toggle("button-like_active");
-// });
-// return cardElement;
-//};
+/*Функция создания карточки с использованием класса */
+function createCard(item) {
+  const card = new Card(item, "#photo-gallery", openFigurePopup);
+  const cardElement = card.generateCard();
+  return cardElement;
+}
 
 /*Функция добавления карточки из поля формы*/
 function handleAddSubmit(evt) {
   evt.preventDefault();
-  // const newCard = createCard({
-  //   name: placeInput.value,
-  //   link: srcInput.value,
-  // });
-  const newCard = new Card(
-    { name: placeInput.value, link: srcInput.value },
-    "#photo-gallery",
-    openFigurePopup
-  );
-  console.log(newCard.generateCard());
-  photoGallery.prepend(newCard.generateCard());
+  const newCard = {
+    name: placeInput.value,
+    link: srcInput.value,
+  };
+  photoGallery.prepend(createCard(newCard));
   evt.target.reset();
   closePopup(popupAddCard);
 }
@@ -155,9 +129,7 @@ formAddCard.addEventListener("submit", handleAddSubmit);
 // });
 
 initialCards.forEach((item) => {
-  const card = new Card(item, "#photo-gallery", openFigurePopup);
-  const CardElement = card.generateCard();
-  photoGallery.append(CardElement);
+  photoGallery.append(createCard(item));
 });
 
 /* Открытие popap универсальная функция*/
