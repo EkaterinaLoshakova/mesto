@@ -1,7 +1,7 @@
 export default class Card {
   constructor(dataCard, cardTemplate, openFigurePopup) {
     this._dataCard = dataCard;
-    this._name = dataCard.name;
+    this._name = dataCard.title;
     this._link = dataCard.link;
     this._cardTemplate = cardTemplate;
     this._openFigurePopup = openFigurePopup;
@@ -40,7 +40,7 @@ export default class Card {
     this._trashButton.addEventListener("click", () => this._deleteCard());
     this._cardLikeButton.addEventListener("click", () => this._switchLike());
     this._cardImage.addEventListener("click", () =>
-      this._openFigurePopup(this._name, this._link)
+      this._openFigurePopup(this._dataCard)
     );
   }
 }
