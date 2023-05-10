@@ -2,6 +2,7 @@ export default class Popup {
   constructor(selectorPopup) {
     this._popup = document.querySelector(selectorPopup);
     this._popupClose = this._popup.querySelector(".popup__close-icon");
+    this._handleEscClose = this._handleEscClose.bind(this);
   }
   open() {
     this._popup.classList.add("popup_opened");
@@ -13,11 +14,11 @@ export default class Popup {
     document.removeEventListener("keydown", this._handleEscClose);
   }
 
-  _handleEscClose = (evt) => {
+  _handleEscClose(evt) {
     if (evt.key === "Escape") {
       this.close();
     }
-  };
+  }
 
   _closePopupOverlay(evt) {
     if (evt.target === evt.currentTarget) {

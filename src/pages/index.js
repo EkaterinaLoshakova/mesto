@@ -1,4 +1,4 @@
-import "./pages/index.css";
+import "./index.css";
 import {
   initialCards,
   formEditProfile,
@@ -10,13 +10,13 @@ import {
   objectValidation,
   popupButtonEdit,
   buttonAddCard,
-} from "./scripts/utils/constants.js";
-import Card from "./scripts/components/Card.js";
-import FormValidator from "./scripts/components/FormValidator.js";
-import PopupWithImage from "./scripts/components/PopupWithImage.js";
-import PopupWithForm from "./scripts/components/PopupWithForm.js";
-import Section from "./scripts/components/Section.js";
-import UserInfo from "./scripts/components/UserInfo.js";
+} from "../utils/constants.js";
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import Section from "../components/Section.js";
+import UserInfo from "../components/UserInfo.js";
 
 const userInfo = new UserInfo(objectInfo);
 
@@ -31,8 +31,9 @@ popupEditProfileValidation.enableValidation();
 const formAddCardValidation = new FormValidator(objectValidation, formAddCard);
 formAddCardValidation.enableValidation();
 
-const popupCard = new PopupWithForm(selectorPopupCard, () => {
-  section.addItem(popupCard._getInputValues());
+const popupCard = new PopupWithForm(selectorPopupCard, (data) => {
+  // section.addItem(popupCard._getInputValues());
+  section.addItem(data);
 });
 popupCard.setEventListeners();
 
@@ -52,14 +53,16 @@ const section = new Section(
 );
 section.addCard();
 
-const popupProfile = new PopupWithForm(selectorProfile, () => {
-  userInfo.setUserInfo(popupProfile._getInputValues());
+const popupProfile = new PopupWithForm(selectorProfile, (data) => {
+  // userInfo.setUserInfo(popupProfile._getInputValues());
+  userInfo.setUserInfo(data);
 });
 
 popupProfile.setEventListeners();
 
 /* Открытие попапа добавления фото*/
 buttonAddCard.addEventListener("click", function () {
+  formAddCardValidation.resetErrorInput();
   formAddCardValidation.toggleButton();
   popupCard.open();
 });

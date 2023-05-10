@@ -32,6 +32,7 @@ export default class Card {
 
   _deleteCard() {
     this._card.remove();
+    this._card = null;
   }
   _setEventListener() {
     this._cardLikeButton = this._card.querySelector(".button-like");
