@@ -141,7 +141,6 @@
         ></button>
         <p class="popup__title">Редактировать профиль</p>
         <form class="form" name="profile-form" novalidate>
-          <!-- <p class="form__title">Редактировать профиль</p> -->
           <div class="popup__input">
             <div class="popup__input-and-error">
               <input
@@ -217,6 +216,42 @@
         <figcaption class="popup__figure-caption"></figcaption>
       </figure>
     </div>
+
+    <!--Попап подтверждения удаления фото-->
+    <div class="popup popup_popup_confirmation">
+      <div class="popup__container">
+        <p class="popup__title">Вы уверены?</p>
+        <form action="" class="form" name="popup_confirmation">
+          <button class="popup__close-icon hover"></button>
+          <button class="button-submit" type="submit">Да</button>
+        </form>
+      </div>
+    </div>
+
+    <!--Попап обновления аватара-->
+    <div class="popup popup_popup_update-avatar">
+      <div class="popup__container">
+        <button class="popup__close-icon hover"></button>
+        <p class="popup__title">Обновить аватар</p>
+        <form action="" class="form" name="update-avatar">
+          <div class="popup__input">
+            <div class="popup__input-and-error">
+              <input
+                name="avatar"
+                type="url"
+                id="avatar"
+                class="form__field form__field_value_place"
+                placeholder="Название"
+                required
+              />
+              <span id="avatar-error" class="error"></span>
+            </div>
+          </div>
+          <button class="button-submit" type="submit">Сохранить</button>
+        </form>
+      </div>
+    </div>
+
     <!-- <script defer src="./scripts/cards.js"></script>-->
     <!-- <script defer src="./scripts/validate.js"></script>-->
     <!-- <script type="module" src="./index.js"></script> -->
