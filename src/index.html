@@ -19,12 +19,17 @@
       <main class="content page__margin-left-right">
         <section class="profile">
           <div class="profile__wrapper">
-            <img
-              src="<%=require('./images/profile__avatar.jpg')%>"
-              class="profile__avatar"
-              alt="Фото аватара"
-            />
-
+            <button
+              class="profile__button"
+              type="button"
+              aria-label="Редактировать профайл"
+            >
+              <img
+                src="<%=require('./images/profile__avatar.jpg')%>"
+                class="profile__avatar"
+                alt="Фото аватара"
+              />
+            </button>
             <div class="profile__info">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
               <button
@@ -180,7 +185,7 @@
           <div class="popup__input">
             <div class="popup__input-and-error">
               <input
-                name="title"
+                name="name"
                 type="text"
                 id="place"
                 class="form__field form__field_value_place"
@@ -233,7 +238,7 @@
       <div class="popup__container">
         <button class="popup__close-icon hover"></button>
         <p class="popup__title">Обновить аватар</p>
-        <form action="" class="form" name="update-avatar">
+        <form action="" class="form" name="avatar-form">
           <div class="popup__input">
             <div class="popup__input-and-error">
               <input

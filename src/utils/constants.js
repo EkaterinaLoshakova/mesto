@@ -29,13 +29,18 @@ const initialCards = [
 const popupButtonEdit = document.querySelector(".edit-button");
 const buttonAddCard = document.querySelector(".add-button");
 
+/*Кнопка редактирования профайла */
+const buttonEditAvatar = document.querySelector(".profile__button");
+
 const formEditProfile = document.forms["profile-form"];
 const formAddCard = document.forms["card-form"];
+const formEditAvatar = document.forms["avatar-form"];
 const selectorList = ".photo-gallery__list";
 const selectorPopupCard = ".popup_popup_add-card";
 const objectInfo = {
   nameSelector: ".profile__name",
   jobSelector: ".profile__job",
+  avatarSelector: ".profile__avatar",
 };
 const selectorProfile = ".popup_popup_edit-profile";
 
@@ -58,4 +63,6 @@ export {
   objectValidation,
   popupButtonEdit,
   buttonAddCard,
+  buttonEditAvatar,
+  formEditAvatar,
 };
