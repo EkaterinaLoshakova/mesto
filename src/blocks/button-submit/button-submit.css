@@ -9,7 +9,7 @@
   font-size: 18px;
   line-height: 1.22;
   cursor: pointer;
-  width: 358px;
+  /* width: 358px; */
 }
 
 @media screen and (max-width: 768px) {

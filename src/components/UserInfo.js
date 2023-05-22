@@ -16,7 +16,5 @@ export default class UserInfo {
     this._nameSelector.textContent = name;
     this._jobSelector.textContent = job;
     this._avatarSelector.src = avatar;
-    console.log(this._nameSelector.textContent);
-    console.log(this._avatarSelector.src);
   }
 }

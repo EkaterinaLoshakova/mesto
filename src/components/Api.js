@@ -28,18 +28,28 @@ export default class Api {
     }).then(this._checkResponse);
   }
 
-  setUserData() {
+  setUserData(data) {
     return fetch(this._baseUrl + "/users/me", {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        name: "Катюшка",
-        about: "Лапатушка",
-        avatar:
-          "https://99px.ru/sstorage/56/2013/04/image_560404130643137066424.jpg",
+        name: data.name,
+        about: data.job,
       }),
     }).then((res) => {
-      console.log(res);
+      return res.json();
+    });
+  }
+
+  setUserAvatar(data) {
+    return fetch(this._baseUrl + "/users/me/avatar", {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: data.avatar,
+      }),
+    }).then((res) => {
+      return res.json();
     });
   }
 }

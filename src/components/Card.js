@@ -1,14 +1,15 @@
 export default class Card {
   constructor(dataCard, cardTemplate, openFigurePopup, openDeletePopup) {
     this._dataCard = dataCard;
-    // this._myId = dataCard.myId;
-    // this._ownerId = dataCard.owner._id;
+    this._myId = dataCard.myId;
+    this._ownerId = dataCard.owner._id;
     this._name = dataCard.name;
     this._link = dataCard.link;
     this._cardTemplate = cardTemplate;
     this._openFigurePopup = openFigurePopup;
     this._openDeletePopup = openDeletePopup;
     console.log(this._ownerId);
+    console.log(this._myId);
     // this._deleteCard = this._deleteCard.bind(this);
   }
 
@@ -26,7 +27,7 @@ export default class Card {
     this._trashButton = this._card.querySelector(".button-trash");
     this._cardImage = this._card.querySelector(".photo-gallery__image");
     this._setEventListener();
-    // this._visibleTrash();
+    this._visibleTrash();
     const cardTitle = this._card.querySelector(".photo-gallery__title");
     this._cardImage.alt = this._name;
     this._cardImage.src = this._link;
@@ -50,10 +51,8 @@ export default class Card {
   }
 
   _visibleTrash() {
-    if (this._myId === this._ownerId) {
-      this._trashButton.style.display = "block";
-    } else {
-      this._trashButton.style.display = "none";
+    if (this._myId !== this._ownerId) {
+      this._trashButton.remove();
     }
   }
 

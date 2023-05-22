@@ -10,8 +10,8 @@ export default class PopupWithImage extends Popup {
 
   open = (dataCard) => {
     this._popupImage.src = dataCard.link;
-    this._popupImage.alt = dataCard.title;
-    this._imageCaptionPopup.textContent = dataCard.title;
+    this._popupImage.alt = dataCard.name;
+    this._imageCaptionPopup.textContent = dataCard.name;
     super.open();
   };
 }

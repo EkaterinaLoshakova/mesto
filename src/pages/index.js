@@ -30,11 +30,6 @@ const api = new Api({
   },
 });
 
-api.getInitialCards().then((res) => {});
-
-api.getUserData();
-api.setUserData();
-
 /*Создаем новый элемент попа подтверждения  удаления карточки от класса PopupConfirmationDelete*/
 const deletePopupConfirmation = new PopupConfirmationDelete(
   ".popup_popup_confirmation",
@@ -68,7 +63,6 @@ formEditAvatarValidation.enableValidation();
 
 const popupCard = new PopupWithForm(selectorPopupCard, (data) => {
   // section.addItem(popupCard._getInputValues());
-
   console.log(data);
   section.addItem(data);
   popupCard.close();
@@ -99,8 +93,16 @@ const section = new Section(
 
 const popupProfile = new PopupWithForm(selectorProfile, (data) => {
   // userInfo.setUserInfo(popupProfile._getInputValues());
-  userInfo.setUserInfo(data);
-  this.close();
+  console.log(data);
+  api.setUserData(data).then((res) =>
+    userInfo.setUserInfo({
+      name: res.name,
+      job: res.about,
+      avatar: res.avatar,
+    })
+  );
+
+  popupProfile.close();
 });
 
 popupProfile.setEventListeners();
@@ -109,8 +111,15 @@ popupProfile.setEventListeners();
 const popupEditAvatar = new PopupWithForm(
   ".popup_popup_update-avatar",
   (data) => {
-    document.querySelector(".profile__avatar").src = data.avatar;
-    // userInfo.setUserInfo(popupProfile._getInputValues());
+    // document.querySelector(".profile__avatar").src = data.avatar;
+    api.setUserAvatar(data).then((res) =>
+      userInfo.setUserInfo({
+        name: res.name,
+        job: res.about,
+        avatar: res.avatar,
+      })
+    );
+    popupEditAvatar.close();
   }
 );
 
@@ -144,7 +153,7 @@ Promise.all([api.getUserData(), api.getInitialCards()]).then(
       job: userData.about,
       avatar: userData.avatar,
     });
-    console.log(initialCards);
+
     section.addCard(initialCards);
   }
 );
