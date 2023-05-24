@@ -9,12 +9,15 @@ export default class PopupConfirmationDelete extends Popup {
     super.setEventListeners();
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
-      this._submitFunction(this._card);
+      this._submitFunction({ card: this._element, cardId: this._dataCardId });
     });
   }
 
-  open = (card) => {
+  open = ({ card, cardId }) => {
     super.open();
-    this._card = card;
+    this._element = card;
+    this._dataCardId = cardId;
+    console.log(card);
+    console.log(cardId);
   };
 }

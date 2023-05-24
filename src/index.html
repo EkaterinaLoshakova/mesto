@@ -56,7 +56,11 @@
               <button class="button-trash"></button>
               <div class="photo-gallery__wrapper">
                 <h3 class="photo-gallery__title"></h3>
-                <button class="button-like"></button>
+                <div class="like-container">
+                <button class="like-container__button-like"></button>
+                <p class="like-container__counter"></p>
+              </div>
+              </div>
               </div>
             </li>
           </template>
@@ -225,7 +229,7 @@
     <!--Попап подтверждения удаления фото-->
     <div class="popup popup_popup_confirmation">
       <div class="popup__container">
-        <p class="popup__title">Вы уверены?</p>
+        <p class="popup__title popup__title_delete">Вы уверены?</p>
         <form action="" class="form" name="popup_confirmation">
           <button class="popup__close-icon hover"></button>
           <button class="button-submit" type="submit">Да</button>

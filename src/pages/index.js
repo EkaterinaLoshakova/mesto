@@ -33,9 +33,19 @@ const api = new Api({
 /*Создаем новый элемент попа подтверждения  удаления карточки от класса PopupConfirmationDelete*/
 const deletePopupConfirmation = new PopupConfirmationDelete(
   ".popup_popup_confirmation",
-  (card) => {
-    card.removeCard();
-    deletePopupConfirmation.close();
+  ({ card, cardId }) => {
+    console.log(card);
+    console.log(cardId);
+
+    api
+      .deleteCard(cardId)
+      .then((res) => {
+        console.log(res);
+        card.removeCard();
+        deletePopupConfirmation.close();
+      })
+      .catch((error) => console.error(`${error}`));
+    // card.removeCard();
   }
 );
 
@@ -63,9 +73,17 @@ formEditAvatarValidation.enableValidation();
 
 const popupCard = new PopupWithForm(selectorPopupCard, (data) => {
   // section.addItem(popupCard._getInputValues());
+  Promise.all([api.getUserData(), api.postCard(data)]).then(
+    ([userData, cardData]) => {
+      cardData.myId = userData._id;
+      section.addItem(cardData);
+      popupCard.close();
+    }
+  );
+
   console.log(data);
-  section.addItem(data);
-  popupCard.close();
+  // section.addItem(data);
+  // popupCard.close();
 });
 popupCard.setEventListeners();
 
@@ -80,10 +98,24 @@ const section = new Section(
         item,
         "#photo-gallery",
         popupImage.open,
-        deletePopupConfirmation.open
+        deletePopupConfirmation.open,
+        (cardId, cardLikeButton) => {
+          if (
+            cardLikeButton.classList.contains(
+              "like-container__button-like_active"
+            )
+          ) {
+            api.deleteLike(cardId).then((res) => {
+              card.toggleLike(res.likes);
+            });
+          } else {
+            api.addLike(cardId).then((res) => {
+              card.toggleLike(res.likes);
+            });
+          }
+        }
       );
       const cardElement = card.generateCard();
-
       return cardElement;
     },
   },
@@ -93,7 +125,6 @@ const section = new Section(
 
 const popupProfile = new PopupWithForm(selectorProfile, (data) => {
   // userInfo.setUserInfo(popupProfile._getInputValues());
-  console.log(data);
   api.setUserData(data).then((res) =>
     userInfo.setUserInfo({
       name: res.name,
