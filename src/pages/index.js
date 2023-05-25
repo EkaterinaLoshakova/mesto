@@ -34,17 +34,16 @@ const api = new Api({
 const deletePopupConfirmation = new PopupConfirmationDelete(
   ".popup_popup_confirmation",
   ({ card, cardId }) => {
-    console.log(card);
-    console.log(cardId);
-
     api
       .deleteCard(cardId)
       .then((res) => {
-        console.log(res);
         card.removeCard();
         deletePopupConfirmation.close();
       })
-      .catch((error) => console.error(`${error}`));
+      .catch((error) => console.error(error))
+      .finally(() => {
+        deletePopupConfirmation.resetButtonText();
+      });
     // card.removeCard();
   }
 );
@@ -73,13 +72,16 @@ formEditAvatarValidation.enableValidation();
 
 const popupCard = new PopupWithForm(selectorPopupCard, (data) => {
   // section.addItem(popupCard._getInputValues());
-  Promise.all([api.getUserData(), api.postCard(data)]).then(
-    ([userData, cardData]) => {
+  Promise.all([api.getUserData(), api.postCard(data)])
+    .then(([userData, cardData]) => {
       cardData.myId = userData._id;
       section.addItem(cardData);
       popupCard.close();
-    }
-  );
+    })
+    .catch((error) => console.error(`${error}`))
+    .finally(() => {
+      popupCard.resetButtonText();
+    });
 
   console.log(data);
   // section.addItem(data);
@@ -105,13 +107,19 @@ const section = new Section(
               "like-container__button-like_active"
             )
           ) {
-            api.deleteLike(cardId).then((res) => {
-              card.toggleLike(res.likes);
-            });
+            api
+              .deleteLike(cardId)
+              .then((res) => {
+                card.toggleLike(res.likes);
+              })
+              .catch((error) => console.error(error));
           } else {
-            api.addLike(cardId).then((res) => {
-              card.toggleLike(res.likes);
-            });
+            api
+              .addLike(cardId)
+              .then((res) => {
+                card.toggleLike(res.likes);
+              })
+              .catch((error) => console.error(error));
           }
         }
       );
@@ -125,13 +133,19 @@ const section = new Section(
 
 const popupProfile = new PopupWithForm(selectorProfile, (data) => {
   // userInfo.setUserInfo(popupProfile._getInputValues());
-  api.setUserData(data).then((res) =>
-    userInfo.setUserInfo({
-      name: res.name,
-      job: res.about,
-      avatar: res.avatar,
-    })
-  );
+  api
+    .setUserData(data)
+    .then((res) =>
+      userInfo.setUserInfo({
+        name: res.name,
+        job: res.about,
+        avatar: res.avatar,
+      })
+    )
+    .catch((error) => console.error(error))
+    .finally(() => {
+      popupProfile.resetButtonText();
+    });
 
   popupProfile.close();
 });
@@ -143,13 +157,19 @@ const popupEditAvatar = new PopupWithForm(
   ".popup_popup_update-avatar",
   (data) => {
     // document.querySelector(".profile__avatar").src = data.avatar;
-    api.setUserAvatar(data).then((res) =>
-      userInfo.setUserInfo({
-        name: res.name,
-        job: res.about,
-        avatar: res.avatar,
-      })
-    );
+    api
+      .setUserAvatar(data)
+      .then((res) =>
+        userInfo.setUserInfo({
+          name: res.name,
+          job: res.about,
+          avatar: res.avatar,
+        })
+      )
+      .catch((error) => console.error(error))
+      .finally(() => {
+        popupEditAvatar.resetButtonText();
+      });
     popupEditAvatar.close();
   }
 );

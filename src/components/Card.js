@@ -74,8 +74,6 @@ export default class Card {
     // this._card.remove();
     // this._card = null;
     this._openDeletePopup({ card: this, cardId: this._dataCardId });
-    console.log(this);
-    console.log(this._dataCard);
   };
 
   removeCard() {

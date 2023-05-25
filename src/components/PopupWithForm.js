@@ -6,6 +6,9 @@ export default class PopupWithForm extends Popup {
     this._form = this._popup.querySelector(".form");
     this._inputList = this._form.querySelectorAll(".form__field");
     this.close = this.close.bind(this);
+    this._button = this._form.querySelector(".button-submit");
+    this._buttonText = this._button.textContent;
+    // this._buttonText = this._buttonText.textContent;
   }
 
   setInputValues(userData) {
@@ -26,10 +29,16 @@ export default class PopupWithForm extends Popup {
     super.setEventListeners();
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
+      this._button.textContent = this._button.textContent + "...";
       this._submitFunction(this._getInputValues());
       // this.close();
     });
   }
+
+  resetButtonText() {
+    this._button.textContent = this._buttonText;
+  }
+
   close() {
     super.close();
     this._form.reset();
