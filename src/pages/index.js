@@ -30,6 +30,8 @@ const api = new Api({
   },
 });
 
+/*Создаем переменную ID пользователя */
+let myId = null;
 /*Создаем новый элемент попа подтверждения  удаления карточки от класса PopupConfirmationDelete*/
 const deletePopupConfirmation = new PopupConfirmationDelete(
   ".popup_popup_confirmation",
@@ -72,10 +74,12 @@ formEditAvatarValidation.enableValidation();
 
 const popupCard = new PopupWithForm(selectorPopupCard, (data) => {
   // section.addItem(popupCard._getInputValues());
-  Promise.all([api.getUserData(), api.postCard(data)])
-    .then(([userData, cardData]) => {
-      cardData.myId = userData._id;
-      section.addItem(cardData);
+  // Promise.all([api.getUserData(), api.postCard(data)])
+  api
+    .postCard(data)
+    .then((res) => {
+      res.myId = myId;
+      section.addItem(section.renderer(res));
       popupCard.close();
     })
     .catch((error) => console.error(`${error}`))
@@ -83,7 +87,6 @@ const popupCard = new PopupWithForm(selectorPopupCard, (data) => {
       popupCard.resetButtonText();
     });
 
-  console.log(data);
   // section.addItem(data);
   // popupCard.close();
 });
@@ -123,6 +126,7 @@ const section = new Section(
           }
         }
       );
+      item.myId = myId;
       const cardElement = card.generateCard();
       return cardElement;
     },
@@ -135,19 +139,18 @@ const popupProfile = new PopupWithForm(selectorProfile, (data) => {
   // userInfo.setUserInfo(popupProfile._getInputValues());
   api
     .setUserData(data)
-    .then((res) =>
+    .then((res) => {
       userInfo.setUserInfo({
         name: res.name,
         job: res.about,
         avatar: res.avatar,
-      })
-    )
+      });
+      popupProfile.close();
+    })
     .catch((error) => console.error(error))
     .finally(() => {
       popupProfile.resetButtonText();
     });
-
-  popupProfile.close();
 });
 
 popupProfile.setEventListeners();
@@ -159,18 +162,18 @@ const popupEditAvatar = new PopupWithForm(
     // document.querySelector(".profile__avatar").src = data.avatar;
     api
       .setUserAvatar(data)
-      .then((res) =>
+      .then((res) => {
         userInfo.setUserInfo({
           name: res.name,
           job: res.about,
           avatar: res.avatar,
-        })
-      )
+        });
+        popupEditAvatar.close();
+      })
       .catch((error) => console.error(error))
       .finally(() => {
         popupEditAvatar.resetButtonText();
       });
-    popupEditAvatar.close();
   }
 );
 
@@ -196,9 +199,9 @@ buttonEditAvatar.addEventListener("click", function () {
   popupEditAvatar.open();
 });
 
-Promise.all([api.getUserData(), api.getInitialCards()]).then(
-  ([userData, initialCards]) => {
-    initialCards.forEach((item) => (item.myId = userData._id));
+Promise.all([api.getUserData(), api.getInitialCards()])
+  .then(([userData, initialCards]) => {
+    myId = userData._id;
     userInfo.setUserInfo({
       name: userData.name,
       job: userData.about,
@@ -206,5 +209,5 @@ Promise.all([api.getUserData(), api.getInitialCards()]).then(
     });
 
     section.addCard(initialCards);
-  }
-);
+  })
+  .catch((error) => console.error(error));
