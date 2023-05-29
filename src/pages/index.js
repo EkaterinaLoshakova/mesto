@@ -78,8 +78,9 @@ const popupCard = new PopupWithForm(selectorPopupCard, (data) => {
   api
     .postCard(data)
     .then((res) => {
+      console.log(res);
       res.myId = myId;
-      section.addItem(section.renderer(res));
+      section.addItem(createNewCard(res));
       popupCard.close();
     })
     .catch((error) => console.error(`${error}`))
@@ -95,40 +96,72 @@ popupCard.setEventListeners();
 const popupImage = new PopupWithImage(".popup_popup_image");
 popupImage.setEventListeners();
 
+function createNewCard(item) {
+  const card = new Card(
+    item,
+    "#photo-gallery",
+    popupImage.open,
+    deletePopupConfirmation.open,
+    (cardId, cardLikeButton) => {
+      if (
+        cardLikeButton.classList.contains("like-container__button-like_active")
+      ) {
+        api
+          .deleteLike(cardId)
+          .then((res) => {
+            card.toggleLike(res.likes);
+          })
+          .catch((error) => console.error(error));
+      } else {
+        api
+          .addLike(cardId)
+          .then((res) => {
+            card.toggleLike(res.likes);
+          })
+          .catch((error) => console.error(error));
+      }
+    }
+  );
+  item.myId = myId;
+  const cardElement = card.generateCard();
+  return cardElement;
+}
+
 const section = new Section(
   {
     // items: initialCards,
     renderer: (item) => {
-      const card = new Card(
-        item,
-        "#photo-gallery",
-        popupImage.open,
-        deletePopupConfirmation.open,
-        (cardId, cardLikeButton) => {
-          if (
-            cardLikeButton.classList.contains(
-              "like-container__button-like_active"
-            )
-          ) {
-            api
-              .deleteLike(cardId)
-              .then((res) => {
-                card.toggleLike(res.likes);
-              })
-              .catch((error) => console.error(error));
-          } else {
-            api
-              .addLike(cardId)
-              .then((res) => {
-                card.toggleLike(res.likes);
-              })
-              .catch((error) => console.error(error));
-          }
-        }
-      );
-      item.myId = myId;
-      const cardElement = card.generateCard();
-      return cardElement;
+      // const card = new Card(
+      //   item,
+      //   "#photo-gallery",
+      //   popupImage.open,
+      //   deletePopupConfirmation.open,
+      //   (cardId, cardLikeButton) => {
+      //     if (
+      //       cardLikeButton.classList.contains(
+      //         "like-container__button-like_active"
+      //       )
+      //     ) {
+      //       api
+      //         .deleteLike(cardId)
+      //         .then((res) => {
+      //           card.toggleLike(res.likes);
+      //         })
+      //         .catch((error) => console.error(error));
+      //     } else {
+      //       api
+      //         .addLike(cardId)
+      //         .then((res) => {
+      //           card.toggleLike(res.likes);
+      //         })
+      //         .catch((error) => console.error(error));
+      //     }
+      //   }
+      // );
+      // item.myId = myId;
+      // const cardElement = card.generateCard();
+      // return cardElement;
+      section.addItemAppend(createNewCard(item));
     },
   },
   selectorList
@@ -201,7 +234,13 @@ buttonEditAvatar.addEventListener("click", function () {
 
 Promise.all([api.getUserData(), api.getInitialCards()])
   .then(([userData, initialCards]) => {
+    // myId = userData._id;
     myId = userData._id;
+    initialCards.forEach((card) => {
+      card.myId = myId;
+    });
+
+    console.log(userData);
     userInfo.setUserInfo({
       name: userData.name,
       job: userData.about,

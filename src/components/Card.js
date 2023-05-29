@@ -7,6 +7,7 @@ export default class Card {
     isLike
   ) {
     this._dataCard = dataCard;
+    console.log(dataCard);
     this._myId = dataCard.myId;
     this._ownerId = dataCard.owner._id;
     this._name = dataCard.name;
